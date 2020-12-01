@@ -19,26 +19,24 @@ namespace BestBuyBestPractices
         }
         public void CreateProduct(string newProductName, double newPrice, int newCategoryID)
         {
-            //_connection.Execute("INSERT INTO PRODUCTS (Name) VALUES (@productName);",
-            //    new { productName = newProductName });
-
-            //_connection.Execute("INSERT INTO PRODUCTS (Price) VALUES (@price);",
-            //    new { price = newPrice });
-
-            //_connection.Execute("INSERT INTO PRODUCTS (CategoryID) VALUES (@categoryID);",
-            //    new { categoryID = newCategoryID });
-
             _connection.Execute("INSERT INTO products (Name, Price, CategoryID) VALUES (@productName, @price, @categoryID);",
                 new { productName = newProductName, price = newPrice, categoryID = newCategoryID });
         }
-        public void UpdateProduct(int productID, string updateName) //not sure what to put in the paranthesis yet
+        public void UpdateProduct(int productID, string updateName)
         {
             _connection.Execute("UPDATE products SET Name = @changeName WHERE ProductID = @productID;",
                 new { changeName = updateName, productID });
         }
-        public void DeleteProduct() //not sure what to put in the paranthesis yet
+        public void DeleteProduct(int productID)
         {
+            _connection.Execute("DELETE FROM reviews WHERE ProductID = @productID;",
+                new { productID = productID });
 
+            _connection.Execute("DELETE FROM sales WHERE ProductID = @productID;",
+               new { productID = productID });
+
+            _connection.Execute("DELETE FROM products WHERE ProductID = @productID;",
+               new { productID = productID });
         }
     }
 }

@@ -9,5 +9,6 @@ namespace BestBuyBestPractices
         IEnumerable<Product> GetAllProducts();
         void CreateProduct(string newProductName, double newPrice, int newCategoryID);
         void UpdateProduct(int productID, string updateName);
+        void DeleteProduct(int productID);
     }
 }
