@@ -33,7 +33,8 @@ namespace BestBuyBestPractices
         }
         public void UpdateProduct(int productID, string updateName) //not sure what to put in the paranthesis yet
         {
-
+            _connection.Execute("UPDATE products SET Name = @changeName WHERE ProductID = @productID;",
+                new { changeName = updateName, productID });
         }
         public void DeleteProduct() //not sure what to put in the paranthesis yet
         {

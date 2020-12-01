@@ -24,6 +24,8 @@ namespace BestBuyBestPractices
             var repo = new DapperDepartmentRepository(conn);
             //exercise 2 portion:
             var repo2 = new DapperProductRepository(conn);
+            //bonus 1 update product
+            var repo3 = new DapperProductRepository(conn);
 
             Console.WriteLine("Type a new Department name");
             var newDepartment = Console.ReadLine();
@@ -37,12 +39,21 @@ namespace BestBuyBestPractices
             var newCategoryID = Console.ReadLine();
             repo2.CreateProduct(newProduct, double.Parse(newPrice), int.Parse(newCategoryID));
 
+
+            Console.WriteLine("What is the product ID of the item you want to change the name of?");
+            var productID = Console.ReadLine();
+            Console.WriteLine("What do you want to change the product name to?");
+            var updateName = Console.ReadLine();
+            repo3.UpdateProduct(int.Parse(productID), updateName);
+
+            
             var departments = repo.GetAllDepartments();
 
             foreach(var dept in departments)
             {
                 Console.WriteLine(dept.Name);
             }
+
 
             var products = repo2.GetAllProducts();
 
@@ -51,6 +62,14 @@ namespace BestBuyBestPractices
                 Console.WriteLine(product.Name);
                 Console.WriteLine(product.Price);
                 Console.WriteLine(product.CategoryID);
+            }
+
+
+            var products2 = repo3.GetAllProducts();
+
+            foreach (var product in products2)
+            {
+                Console.WriteLine(product.Name);
             }
         }   
     }
