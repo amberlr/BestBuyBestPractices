@@ -31,11 +31,12 @@ namespace BestBuyBestPractices
             //think of it as string interpolation.. sql interpolation in a way
             //@department name.. adding parameter to query
 
-            _connection.Execute("INSERT INTO DEPARTMENTS (Name) VALUES (@departmentName);",
+            _connection.Execute("INSERT INTO DEPARTMENTS (Name) VALUES (@departmentName);", 
 
                 //anonymous type - whatever type we are trying to create.. it's going to create
                 //think of it as linq
-                new { departmentName = newDepartmentName });
+                new { departmentName = newDepartmentName }); //departmentName in line 34 is going to = newDepartmentName
+                                                             //departmentName is the user input.. what they are entering
         }
     }
 }
